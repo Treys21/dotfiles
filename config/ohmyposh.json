@@ -1,0 +1,160 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": false,
+  "palette": {
+    "nord-fg":          "#D8DEE9",
+    "nord-blue":        "#81A1C1",
+    "nord-blue-bright": "#88C0D0",
+    "nord-red":         "#BF616A",
+    "nord-cyan":        "#8FBCBB",
+    "nord-yellow":      "#EBCB8B",
+    "nord-green":       "#A3BE8C",
+    "nord-orange":      "#D08770",
+    "nord-muted":       "#4C566A",
+    "platform-mac":     "#88C0D0",
+    "success-green":    "#A3BE8C",
+    "error-red":        "#BF616A"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "p:nord-blue-bright",
+          "foreground_templates": [
+            "{{ if eq .PWD \"/\" }}p:nord-red{{ end }}"
+          ],
+          "template": "{{ .Path }}",
+          "properties": {
+            "style": "short",
+            "max_depth": 3,
+            "folder_separator_icon": "/",
+            "mapped_locations": {
+              "~/workspace": "ws",
+              "~/workarea": "wa",
+              "~/projects": "proj",
+              "~/src": "src",
+              "~/Documents": "docs",
+              "~/Downloads": "dl"
+            }
+          }
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:error-red",
+          "template": " {{ .Code }}"
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "p:nord-cyan",
+          "template": "{{ if ne .Env.SSH_CONNECTION \"\" }} {{ .UserName }}@{{ .HostName }}{{ end }}"
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "p:nord-blue",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:nord-orange{{ end }}"
+          ],
+          "template": " {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} *{{ end }}{{ if .Staging.Changed }} +{{ end }}",
+          "properties": {
+            "fetch_status": true,
+            "branch_icon": ""
+          }
+        },
+        {
+          "type": "go",
+          "style": "plain",
+          "foreground": "p:nord-cyan",
+          "template": " go {{ .Full }}"
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:nord-yellow",
+          "template": " py {{ .Full }}"
+        },
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "p:nord-green",
+          "template": " node {{ .Full }}"
+        },
+        {
+          "type": "rust",
+          "style": "plain",
+          "foreground": "p:nord-orange",
+          "template": " rs {{ .Full }}"
+        },
+        {
+          "type": "java",
+          "style": "plain",
+          "foreground": "p:nord-orange",
+          "template": " java {{ .Full }}"
+        },
+        {
+          "type": "docker",
+          "style": "plain",
+          "foreground": "p:nord-blue",
+          "template": " 🐳 {{ .Context }}",
+          "properties": {
+            "display_error": false
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:nord-fg",
+          "template": " {{ .FormattedMs }}",
+          "properties": {
+            "threshold": 2000,
+            "style": "austin"
+          }
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "p:nord-muted",
+          "template": "{{ .CurrentDate | date \"3:04 PM\" }}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:success-green",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}p:error-red{{ end }}"
+          ],
+          "template": "❯ ",
+          "properties": {
+            "always_enabled": true
+          }
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "foreground": "p:success-green",
+    "foreground_templates": [
+      "{{ if gt .Code 0 }}p:error-red{{ end }}"
+    ],
+    "template": "❯ "
+  }
+}
