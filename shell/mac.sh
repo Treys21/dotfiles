@@ -5,6 +5,7 @@ alias ls='ls -G'
 export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 
 [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/usr/local/bin:$PATH"
 
 if [[ -n "$ZSH_VERSION" && -d "$HOME/.docker/completions" ]]; then
   fpath=("$HOME/.docker/completions" $fpath)

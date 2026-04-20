@@ -9,3 +9,4 @@ source "$DOTFILES_DIR/shell/mac.sh"
 if command -v oh-my-posh &>/dev/null; then
   eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh.json)"
 fi
+export PATH="$HOME/.local/bin:$PATH"
