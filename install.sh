@@ -15,9 +15,10 @@ safe_link() {
   echo "Linked $target"
 }
 
-safe_link "$DOTFILES_DIR/.zshrc"              "$HOME/.zshrc"
-safe_link "$DOTFILES_DIR/config/git/config"   "$HOME/.config/git/config"
-safe_link "$DOTFILES_DIR/config/git/ignore"   "$HOME/.config/git/ignore"
+safe_link "$DOTFILES_DIR/.zshrc"                       "$HOME/.zshrc"
+safe_link "$DOTFILES_DIR/config/git/config"            "$HOME/.config/git/config"
+safe_link "$DOTFILES_DIR/config/git/ignore"            "$HOME/.config/git/ignore"
+safe_link "$DOTFILES_DIR/config/claude/CLAUDE.md"      "$HOME/.claude/CLAUDE.md"
 
 mkdir -p "$HOME/.config"
 cp "$DOTFILES_DIR/config/ohmyposh.json" "$HOME/.config/ohmyposh.json"
